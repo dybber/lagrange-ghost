@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{lang}}">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <title>{{meta_title}}</title>
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+    <link rel="stylesheet" type="text/css" href="{{asset "css/normalize.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "css/main.css"}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+
+    <header id="site-head">
+        {{#if @blog.logo}}
+        <a id="blog-logo" href="{{@blog.url}}">
+          <img class="bloglogo" src="{{@blog.logo}}" />
+        </a>
+        {{/if}}
+        <h3 class="blog-title"><a href="{{@blog.url}}">{{@blog.title}}</a>
+            <br>
+            <small class="blog-description">― {{@blog.description}}</small>
+        </h3>
+        {{> menu}}
+    </header>
+
+    {{{body}}}
+
+    <footer class="site-footer">
+        {{> social-icons}}
+          <span class="post-metadata"><a href="{{ @site.url }}/om-bloggen/">{{ @site.title }} | {{ @site.description }} af Martin Dybdal</a></span>
+
+    </footer>
+
+    {{ghost_foot}}
+
+    <script type="text/javascript">
+        if (typeof jQuery == 'undefined') {
+            document.write('<script type="text/javascript" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.0.min.js"></'+'script>');
+        }
+    </script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/moment.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.23.0/locale/da.js"></script>
+    <script type="text/javascript" src="{{asset "js/index.js"}}"></script>
+
+</body>
+</html>

@@ -1,0 +1,15 @@
+<nav class="pagination" role="navigation">
+    {{#if prev}}
+        <a class="pagination-button pagination-active" href="{{page_url prev}}">Nyere</a>
+    {{else}}
+        <span class="pagination-button">Nyere</span>
+    {{/if}}
+    {{#if next}}
+        <a class="pagination-button pagination-active" href="{{page_url next}}">Ældre</a>
+    {{else}}
+        <span class="pagination-button">Ældre</span>
+    {{/if}}
+    <p>
+    <span class="page-number">Side {{page}} af {{pages}}</span>
+    </p>
+</nav>
