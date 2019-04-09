@@ -7,9 +7,7 @@
         {{#post}}
 
         <header>
-        {{#if tags}}<div class="post-meta tags">Posted in {{tags}}</div>{{/if}}
-        <h1 class="post-title">{{{title}}}</h1>
-        <div class="post-meta"><time class="post-date" datetime="{{date format="YYYY-MM-DDTHH:mm:ss.SS\Z"}}">...</time></div>
+          <h1 class="post-title">{{{title}}}</h1>
         </header>
 
         <section class="post-content">
@@ -17,6 +15,13 @@
         </section>
 
         <footer class="post-footer">
+          <p>
+            <span class="fa fa-calendar" role="img" aria-hidden="true"></span>
+          <time class="post-date" datetime="{{date format="YYYY-MM-DDTHH:mm:ss.SS\Z"}}">...</time>
+          - <span class="fa fa-clock-o" role="img" aria-hidden="true"></span>
+          {{reading_time minute=(t "1 minuts læsning") minutes=(t "% minutters læsning")}}
+          <!-- {{#if tags}} - Tags: {{tags}}{{/if}} -->
+          </p>
 
             {{#if primary_author}}
             <section class="author">
