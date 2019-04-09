@@ -9,43 +9,49 @@
     <section class="post-content">
         {{content}}
 
-    <h3>2019</h3>
-    <ul class="posts">
-    {{#get "posts" limit="all" filter="published_at:>'2019-01-01'+published_at:<'2020-01-01'"}}
-    {{#foreach posts}}
+    <div id="postList"></div>
 
-    <li>
-      <a href="{{url}}">{{title}}</a>
-      <span class="post-metadata">
-       <span class="fa fa-calendar" role="img" aria-hidden="true"></span>
-          <time class="post-date" datetime="{{date format="YYYY-MM-DDTHH:mm:ss.SS\Z"}}">...</time>
-          - <span class="fa fa-clock-o" role="img" aria-hidden="true"></span>
-            {{reading_time minute=(t "1 minuts læsning") minutes=(t "% minutters læsning")}}
-       </span>
-    </li>
-    {{/foreach}}
-    {{/get}}
-    </ul>
-
-
-    <h3>2018</h3>
-    <ul class="posts">
-    {{#get "posts" limit="all" filter="published_at:>'2018-01-01'+published_at:<'2019-01-01'"}}
-    {{#foreach posts}}
-
-    <li>
-      <a href="{{url}}">{{title}}</a>
-      <span class="post-metadata">
-       <span class="fa fa-calendar" role="img" aria-hidden="true"></span>
-          <time class="post-date" datetime="{{date format="YYYY-MM-DDTHH:mm:ss.SS\Z"}}">...</time>
-          - <span class="fa fa-clock-o" role="img" aria-hidden="true"></span>
-            {{reading_time minute=(t "1 minuts læsning") minutes=(t "% minutters læsning")}}
-       </span>
-    </li>
-    {{/foreach}}
-    {{/get}}
-    </ul>
     </section>
 {{/post}}
 
 </main>
+
+<script type="text/javascript">
+function showArchive(posts) {
+    var currentYear = -1;
+    if(window.location.pathname == "/arkiv/"){
+        $(posts).each(function(index,value){
+            var datePublished = new Date(value.published_at);
+            var postYear = datePublished.getFullYear();
+            var postHtml = value.html;
+            var words = postHtml.split(" ").length;
+            var readingTime = Math.round(words/275);
+
+            if(postYear != currentYear) { 
+                currentYear = postYear;
+                $("main").append("<h3>" + currentYear + "</h3>");
+            }
+            $("main").append(
+              $("<p/>")
+                .append("<a href=\"" + value.url +"\">" + value.title + "</a>")
+                .append($("<span class=\"post-metadata\"></span>")
+                        .append("<span class=\"fa fa-calendar\" role=\"img\" aria-hidden=\"true\"></span> ")
+                        .append("<time class=\"post-date\">" + moment(datePublished).format('Do MMMM YYYY') + "</time>")
+                        .append("- <span class=\"fa fa-clock-o\" role=\"img\" aria-hidden=\"true\"></span>")
+                        .append(" " + readingTime + " minutters læsning")
+                ));
+        });
+    }
+}
+
+    
+function onSuccess(data) {
+    showArchive(data.posts);
+}
+    
+$(document).ready(function () {
+    $.get(
+        ghost.url.api('posts', {limit: 'all'})
+    ).done(onSuccess);
+});
+</script>
