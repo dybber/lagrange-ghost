@@ -1,0 +1,11 @@
+<span>
+  <span class="fa fa-calendar" role="img" aria-hidden="true"></span>
+  <time class="post-date" datetime="{{date format="YYYY-MM-DDTHH:mm:ss.SS\Z"}}">...</time>
+  - <span class="fa fa-clock-o" role="img" aria-hidden="true"></span>
+  {{reading_time minute=(t "1 minuts læsning") minutes=(t "% minutters læsning")}}
+  <!-- {{#if tags}} - Tags: {{tags}}{{/if}} -->
+  {{#if primary_author}}
+  - <span class="fa fa-user" role="img" aria-hidden="true"></span>
+    af <a href="{{primary_author.url}}">{{primary_author.name}}</a>
+  {{/if}}
+</span>

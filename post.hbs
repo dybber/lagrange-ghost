@@ -15,23 +15,7 @@
         </section>
 
         <footer class="post-footer">
-          <p>
-            <span class="fa fa-calendar" role="img" aria-hidden="true"></span>
-          <time class="post-date" datetime="{{date format="YYYY-MM-DDTHH:mm:ss.SS\Z"}}">...</time>
-          - <span class="fa fa-clock-o" role="img" aria-hidden="true"></span>
-          {{reading_time minute=(t "1 minuts læsning") minutes=(t "% minutters læsning")}}
-          <!-- {{#if tags}} - Tags: {{tags}}{{/if}} -->
-          </p>
-          
-            {{#if primary_author}}
-            <section class="author">
-                <div class="authorimage" style="background: url({{primary_author.profile_image}})"></div>
-                <p class="attr">Forfatter</p>
-                <h4><a href="{{primary_author.website}}">{{primary_author.name}}</a></h4>
-                <p class="bio">{{primary_author.bio}}</p>
-            </section>
-            {{/if}}
-
+          {{> "post-metadata"}}
         </footer>
 
         {{/post}}

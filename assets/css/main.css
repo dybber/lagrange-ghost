@@ -203,6 +203,11 @@ article.post footer,
   font-family: 'Quattrocento Sans', sans-serif;
   font-size:0.8rem;
 }
+article.preview footer a,
+article.post footer a,
+.post-metadata a {
+  color: #9a9a9a !important;
+}
 
 @media (max-width: 30rem) {
   article.preview h1,
